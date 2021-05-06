@@ -1,0 +1,3 @@
+include ':dutils'
+include ':app'
+rootProject.name = "DUtils"

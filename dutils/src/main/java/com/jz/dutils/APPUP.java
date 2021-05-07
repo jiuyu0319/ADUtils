@@ -23,34 +23,29 @@ import org.json.JSONObject;
  */
 public class APPUP {
 
-    public static void Init(Activity context, NetCallBack callBack,String brandmark){
-        Init(context,1,callBack,brandmark,"HMS-Global","http://api.vrmads.com/api/upgrade.php",10000,10000);
+    public static void Init(Activity context, NetCallBack callBack){
+        Init(context,1,"http://api.vrmads.com/api/upgrade.php",callBack);
     }
 
-
-    public static void Init(Activity context, NetCallBack callBack,String brandmark,String channelmark){
-        Init(context,1,callBack,brandmark,channelmark,"http://api.vrmads.com/api/upgrade.php",10000,10000);
-    }
-
-    public static void Init(Activity context,int postKey, NetCallBack callBack,String brandmark,String channelmark,String url,int cnnectTimeout ,int readTimeout)  {
+    public static void Init(Activity context,int postKey,String url, NetCallBack callBack)  {
         JSONObject js = new JSONObject();
         try {
             js.put("version", context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode);
-            js.put("brandmark",brandmark);
-            js.put("channelmark", channelmark);
+            js.put("brandmark",UtilsConfig.brandmark);
+            js.put("channelmark", UtilsConfig.channelmark);
         } catch (JSONException | PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         String encryptParams = NetUtils.encryptParams(js.toString());
         InitializationConfig config = InitializationConfig.newBuilder(context)
-                .retry(1)
+                .retry(UtilsConfig.retry)
                 .build();
         NoHttp.initialize(config);
 
         StringRequest request = new StringRequest(url, RequestMethod.POST);
 
-        request.setConnectTimeout(cnnectTimeout);
-        request.setReadTimeout(readTimeout);
+        request.setConnectTimeout(UtilsConfig.connectTimeout);
+        request.setReadTimeout(UtilsConfig.readTimeout);
         request.setDefineRequestBody(encryptParams, Headers.HEAD_VALUE_CONTENT_TYPE_URLENCODED);
         request.setCancelSign(postKey); // 设置取消请求的标识符
         CallServer.getInstance().request(postKey, request, new SimpleResponseListener<String>() {

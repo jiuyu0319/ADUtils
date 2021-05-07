@@ -25,35 +25,36 @@ import static com.jz.dutils.utils.NetUtils.getUniqueId;
 public class StatisticsUtils {
 
 
-    public static void Init(Context context,int postKey,String brandmark,String system,String channelmark,String url){
-        Init(context,postKey,brandmark,system,channelmark,url);
+    public static void Init(Context context,int postKey){
+        Init(context,postKey,"http://api.vrmads.com/api/statistics.php");
+    }
+    public static void Init(Context context){
+        Init(context,2,"http://api.vrmads.com/api/statistics.php");
     }
 
-    public static void Init(Context context,String brandmark,String system,String channelmark,String url){
-        Init(context,2,brandmark,system,channelmark,url);
+    public static void Init(Context context,String url){
+        Init(context,2,url);
     }
 
-    public static void Init(Context context,int postKey,String brandmark,String system,String channelmark){
+    public static void Init(Context context,int postKey,String url ){
         JSONObject js = new JSONObject();
 
         try {
-            js.put("brandmark", brandmark);
-            js.put("system",system);
-            js.put("channelmark",channelmark);  //GOOGLE-Global
+            js.put("brandmark", UtilsConfig.brandmark);
+            js.put("system",UtilsConfig.system);
+            js.put("channelmark",UtilsConfig.channelmark);  //GOOGLE-Global
             js.put("equipment", Build.MODEL);
             js.put("equipmentid",getUniqueId(context));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-
-
         InitializationConfig config = InitializationConfig.newBuilder(context)
                 .retry(1)
                 .build();
         NoHttp.initialize(config);
 
-        StringRequest request = new StringRequest("http://api.vrmads.com/api/statistics.php", RequestMethod.POST);
+        StringRequest request = new StringRequest(url, RequestMethod.POST);
 
         request.setConnectTimeout(10000);
         request.setReadTimeout(10000);

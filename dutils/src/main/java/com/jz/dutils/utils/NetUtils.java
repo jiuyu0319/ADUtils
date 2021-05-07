@@ -5,6 +5,8 @@ import android.os.Build;
 import android.provider.Settings;
 import android.util.Base64;
 
+import com.jz.dutils.UtilsConfig;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -21,7 +23,7 @@ public class NetUtils {
     public static String decryptParams(String source) {
         try {
             byte[] base64 = Base64.decode(source, Base64.DEFAULT);
-            byte[] bytes = decryptRC4(base64, "b9Mk%c@qgh");
+            byte[] bytes = decryptRC4(base64, UtilsConfig.password);
             byte[] base64_2 = Base64.decode(new String(bytes), Base64.DEFAULT);
             return new String(base64_2);
         } catch (Exception e) {
@@ -51,7 +53,7 @@ public class NetUtils {
     public static String encryptParams(String source) {
         try {
             String base64 = new BASE64Encoder().encode(source.getBytes());
-            return encryptRC4(base64, "b9Mk%c@qgh");
+            return encryptRC4(base64, UtilsConfig.password);
         } catch (Exception e) {
             e.printStackTrace();
             return "";

@@ -101,11 +101,9 @@ public class ADUtils {
                                 }
                             }
                             adDes.setAdtype(bean.getAd());
-
                         } else {
                             adStatus=13;
                         }
-
 
                     } else{
                         adStatus=13;

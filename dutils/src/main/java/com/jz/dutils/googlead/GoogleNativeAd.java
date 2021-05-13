@@ -39,6 +39,7 @@ public class GoogleNativeAd {
                         template.setStyles(styles);
                         template.setNativeAd(unifiedNativeAd);
                         template.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
                     }
                 })
                 .withAdListener(new AdListener() {
@@ -50,6 +51,7 @@ public class GoogleNativeAd {
                             template.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
                         }
 
+                        template.setVisibility(View.GONE);
                         if (UtilsConfig.NativeAuto) {
                             long responseTime = Integer.valueOf(new Date().getTime() / 1000 + "");
                             String action = "onAdFailed :错误码 " + loadAdError.getCode();

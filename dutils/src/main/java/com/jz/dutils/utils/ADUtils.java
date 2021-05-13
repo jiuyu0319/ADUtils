@@ -107,6 +107,8 @@ public class ADUtils {
                         }
 
 
+                    } else{
+                        adStatus=13;
                     }
                 }
 

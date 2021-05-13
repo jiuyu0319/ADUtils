@@ -64,11 +64,10 @@ public class HuaweiNativeAd {
             public void onAdFailed(int errorCode) {
                 // Call this method when an ad fails to be loaded.
                 frameLayout.setVisibility(View.GONE);
-                if (UtilsConfig.NativeAuto) {
-                    long responseTime = Integer.valueOf(new Date().getTime() / 1000 + "");
-                    String action = "onAdFailed :错误码 " + errorCode;
-                    ADStatistics.Init(activity, "huawei", adId, key, requestTime, responseTime, action);
-                }
+                if (UtilsConfig.NativeAuto){   long responseTime = Integer.valueOf(new Date().getTime() / 1000 + "");
+                String action = "onAdFailed :错误码 " + errorCode;
+                ADStatistics.Init(activity, "huawei", adId, key, requestTime, responseTime, action);
+            }
             }
 
             @Override

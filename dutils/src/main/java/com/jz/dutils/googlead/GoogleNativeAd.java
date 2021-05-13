@@ -39,7 +39,6 @@ public class GoogleNativeAd {
                         template.setStyles(styles);
                         template.setNativeAd(unifiedNativeAd);
                         template.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
                     }
                 })
                 .withAdListener(new AdListener() {

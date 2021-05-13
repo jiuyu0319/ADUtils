@@ -17,8 +17,6 @@ public class ADUtils {
             isHuawei = true;
         }
 
-
-
         if (adinfo.equals("")){
             return null;
         }

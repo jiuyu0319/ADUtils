@@ -23,6 +23,10 @@ public class AdInit {
     public static void Init(Context context, int postKey ,NetCallBack callBack){
         Init(context,postKey,"http://api.vrmads.com/api/adlist.php",callBack);
     }
+
+    public static void Init(Context context,NetCallBack callBack){
+        Init(context,4,"http://api.vrmads.com/api/adlist.php",callBack);
+    }
     public static void Init(Context context, int postKey, String url ,NetCallBack callBack){
 
         JSONObject js = new JSONObject();

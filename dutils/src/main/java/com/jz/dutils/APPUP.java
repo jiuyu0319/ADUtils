@@ -7,6 +7,7 @@ import android.util.Log;
 import com.jz.dutils.utils.CallServer;
 import com.jz.dutils.utils.NetCallBack;
 import com.jz.dutils.utils.NetUtils;
+import com.jz.dutils.utils.UpCallBack;
 import com.yanzhenjie.nohttp.Headers;
 import com.yanzhenjie.nohttp.InitializationConfig;
 import com.yanzhenjie.nohttp.NoHttp;
@@ -23,11 +24,11 @@ import org.json.JSONObject;
  */
 public class APPUP {
 
-    public static void Init(Activity context, NetCallBack callBack){
+    public static void Init(Activity context, UpCallBack callBack){
         Init(context,1,"http://api.vrmads.com/api/upgrade.php",callBack);
     }
 
-    public static void Init(Activity context,int postKey,String url, NetCallBack callBack)  {
+    public static void Init(Activity context,int postKey,String url, UpCallBack callBack)  {
         JSONObject js = new JSONObject();
         try {
             js.put("version", context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode);

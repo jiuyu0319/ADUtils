@@ -12,7 +12,6 @@ public class GoogleInterstitialAd {
     private InterstitialAd mInterstitialAd;
     private Activity activity;
 
-
     public GoogleInterstitialAd(Activity activity,String code, AdListener adListener) {
         this.activity = activity;
         init(activity,adListener,code);

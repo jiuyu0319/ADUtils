@@ -160,7 +160,6 @@ public class GoogleNativeAd {
             adView.getCallToActionView().setVisibility(View.VISIBLE);
             ((Button) adView.getCallToActionView()).setText(nativeAd.getCallToAction());
         }
-
         if (nativeAd.getIcon() == null) {
             adView.getIconView().setVisibility(View.GONE);
         } else {

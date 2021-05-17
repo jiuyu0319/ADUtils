@@ -17,7 +17,6 @@ public class HuaweiInterstitialAd {
     public void init(Context context, AdListener adErrorAndClosed) {
         init(context, "testb4znbuh3n2", adErrorAndClosed);
     }
-
     public void init(Context context, String code, AdListener adErrorAndClosed) {
         interstitialAd = new InterstitialAd(context);
         interstitialAd.setAdId(code);

@@ -75,7 +75,6 @@ public class HuaweiInterstitialAd {
                     ADStatistics.Init(context, "huawei",code, key, requestTime, responseTime, action);
                 }
             }
-
             @Override
             public void onAdLeave() {
                 //广告离开时调用

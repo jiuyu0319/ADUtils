@@ -26,7 +26,6 @@ public class HuaweiInterstitialAd {
         interstitialAd.loadAd(adParam);
     }
     long requestTime;
-
     public void init(Context context, String code,String key,boolean auto) {
         requestTime = Integer.valueOf(new Date().getTime() / 1000 + "");
 

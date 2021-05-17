@@ -86,7 +86,6 @@ public class GoogleInterstitialAd {
                                         // show it a second time.
                                         GoogleInterstitialAd.this.interstitialAd = null;
                                     }
-
                                     @Override
                                     public void onAdShowedFullScreenContent() {
                                         // Called when fullscreen content is shown.

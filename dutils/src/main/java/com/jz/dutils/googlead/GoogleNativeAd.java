@@ -154,6 +154,7 @@ public class GoogleNativeAd {
             adView.getBodyView().setVisibility(View.VISIBLE);
             ((TextView) adView.getBodyView()).setText(nativeAd.getBody());
         }
+
         if (nativeAd.getCallToAction() == null) {
             adView.getCallToActionView().setVisibility(View.INVISIBLE);
         } else {

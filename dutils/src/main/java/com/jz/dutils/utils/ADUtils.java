@@ -111,7 +111,6 @@ public class ADUtils {
                     }
                 }
 
-
                 if (adStatus==13){  // 如果当前广告商广告idstatus不可用 切另一个广告
                     for (ADBean.DataBean.AdtabBean bean : posadinfo) {
                         if (bean.getStatus()==1) {

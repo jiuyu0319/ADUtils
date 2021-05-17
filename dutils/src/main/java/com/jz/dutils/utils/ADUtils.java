@@ -3,6 +3,7 @@ package com.jz.dutils.utils;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.jz.dutils.utils.ADBean;
 
 import org.json.JSONObject;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ADUtils {
-    public AdDes getAdid(String adinfo, String location, String adtype) {
+    public ADUtils.AdDes getAdid(String adinfo, String location, String adtype) {
         boolean isHuawei = false;
         String brand = android.os.Build.BRAND;
         if (brand.equals("Huawei")||brand.equals("HUAWEI")||brand.equals("HONOR")){
@@ -28,14 +29,14 @@ public class ADUtils {
         //13 多广告类型 获取status不可用  14 当前需要展示的广告商广告id status 不可用 拿一个可用的广告id  weights 100
         // 15 当前需要展示的广告商广告id status 不可用 拿一个可用的广告id weights <100 随机获取展示广告
         // 16 当前需要展示的广告商广告id status 不可用 拿一个可用的广告id weights <100 随机获取不展示广告
-        // 17 不是华为手机  google广告禁用
+        // 17 不是华为手机  google广告禁用   18 防止走空
         String adid = "";
-        AdDes adDes = new AdDes();
+        ADUtils.AdDes adDes = new AdDes();
         adDes.setHuawei(isHuawei);
         ADBean adBean = new Gson().fromJson(adinfo,  ADBean.class);
         List< ADBean.DataBean.AdtabBean> posadinfo = new ArrayList<>();
 
-       ADBean.DataBean data = adBean.getData();
+        ADBean.DataBean data = adBean.getData();
 
         List< ADBean.DataBean.AdtabBean> adtab = data.getAdtab();
 
@@ -106,10 +107,35 @@ public class ADUtils {
                         }
 
                     } else{
-                        adStatus=13;
+                        adStatus=18;
                     }
                 }
+
+
                 if (adStatus==13){  // 如果当前广告商广告idstatus不可用 切另一个广告
+                    for (ADBean.DataBean.AdtabBean bean : posadinfo) {
+                        if (bean.getStatus()==1) {
+                            int weights = bean.getWeights();
+                            if (weights == 100) {
+                                adid = bean.getParameter();
+                                adStatus=14;
+                            } else {
+                                int x = (int) (Math.random() * 100);
+                                if (x >= weights) {
+                                    adStatus=15;
+                                    adid = bean.getParameter();
+                                } else {
+                                    adStatus=16;
+                                    adid = "";
+                                }
+                            }
+                            adDes.setAdtype(bean.getAd());
+
+                        }
+                    }
+                }
+
+                if (adid.equals("")){
                     for (ADBean.DataBean.AdtabBean bean : posadinfo) {
                         if (bean.getStatus()==1) {
                             int weights = bean.getWeights();
@@ -135,7 +161,7 @@ public class ADUtils {
         } else {
             adStatus=17;
         }
-        Log.d(ADUtils.class.getSimpleName(),"状态==="+adStatus+"==========="+adid);
+     //   Log.e(ADUtils.class.getSimpleName(),"状态==="+adStatus+"==========="+adid);
 
         adDes.setAdstatus(adStatus);
         try {

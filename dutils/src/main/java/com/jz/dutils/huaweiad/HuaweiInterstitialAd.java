@@ -78,7 +78,6 @@ public class HuaweiInterstitialAd {
             public void onAdLeave() {
                 //广告离开时调用
             }
-
             @Override
             public void onAdOpened() {
                 // 广告打开时调用

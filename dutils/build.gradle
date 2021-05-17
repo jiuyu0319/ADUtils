@@ -41,7 +41,7 @@ dependencies {
     api 'com.yanzhenjie.nohttp:nohttp:1.1.11'
 
     //google 广告
-    api 'com.google.android.gms:play-services-ads:20.0.0'
+    api 'com.google.android.gms:play-services-ads:20.1.0'
     api 'com.google.android.ads:mediation-test-suite:1.5.0'
 
     def lifecycle_version = "2.0.0"

@@ -35,7 +35,7 @@ public class GoogleBanner {
         adView.setAdUnitId(googlecode);
         frameLayout.addView(adView);
         AdRequest adRequest =
-                new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                new AdRequest.Builder()
                         .build();
         //AdSize adSize = getAdSize(activity);
         // Step 4 - Set the adaptive ad size on the ad view.

@@ -59,7 +59,8 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                         }
                     };
 
-            appOpenAd.show(currentActivity, fullScreenContentCallback);
+            appOpenAd.show(currentActivity);
+//            appOpenAd.show(currentActivity, fullScreenContentCallback);
 
         } else {
             Log.d(LOG_TAG, "Can not show ad.");
@@ -95,16 +96,14 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
             return;
         }
 
+
+
         loadCallback =
                 new AppOpenAd.AppOpenAdLoadCallback() {
-                    /**
-                     * Called when an app open ad has loaded.
-                     *
-                     * @param ad the loaded app open ad.
-                     */
                     @Override
-                    public void onAppOpenAdLoaded(AppOpenAd ad) {
-                        AppOpenManager.this.appOpenAd = ad;
+                    public void onAdLoaded(@NonNull AppOpenAd appOpenAd) {
+                        super.onAdLoaded(appOpenAd);
+                        AppOpenManager.this.appOpenAd = appOpenAd;
                         AppOpenManager.this.loadTime = (new Date()).getTime();
                         if (UtilsConfig.OpenAuto){
                             long responseTime = Integer.valueOf(new Date().getTime() / 1000 + "");
@@ -114,14 +113,9 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                         }
                     }
 
-                    /**
-                     * Called when an app open ad has failed to load.
-                     *
-                     * @param loadAdError the error.
-                     */
                     @Override
-                    public void onAppOpenAdFailedToLoad(LoadAdError loadAdError) {
-                        // Handle the error.
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        super.onAdFailedToLoad(loadAdError);
                         if (UtilsConfig.OpenAuto){
                             long responseTime = Integer.valueOf(new Date().getTime() / 1000 + "");
 
@@ -129,7 +123,6 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                             ADStatistics.Init(myApplication.getApplicationContext(), "google",AD_UNIT_ID, "splash", requestTime, responseTime, action);
                         }
                     }
-
                 };
         AdRequest request = getAdRequest();
         AppOpenAd.load(

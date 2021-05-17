@@ -64,7 +64,7 @@ public class HuaweiInterstitialAd {
             public void onAdClosed() {
                 // 广告关闭时调用
                 Log.d("华为插页广告g关闭", "onAdClosed  :");
-                interstitialAd.loadAd(adParam);
+               // interstitialAd.loadAd(adParam);
             }
 
             @Override

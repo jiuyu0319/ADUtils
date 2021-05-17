@@ -44,7 +44,7 @@ public class GoogleInterstitialAd {
         // Request a new ad if one isn't already loaded, hide the button, and kick off the timer.
         if (interstitialAd == null) {
             isStartGame = true;
-            init(activity,code,key);
+            init(activity,code,key,false);
         }
 
     }
@@ -52,7 +52,7 @@ public class GoogleInterstitialAd {
 
     private String code;
     private String key;
-    public void init(Activity activity, String code,String key) {
+    public void init(Activity activity, String code,String key,boolean auto) {
         requestTime = Integer.valueOf(new Date().getTime() / 1000 + "");
         this.activity = activity;
         this.code = code;
@@ -101,6 +101,9 @@ public class GoogleInterstitialAd {
                         if (isStartGame) {
                             interstitialAd.show(activity);
                             isStartGame =false;
+                        }
+                        if (auto){
+                            interstitialAd.show(activity);
                         }
 
                         if (UtilsConfig.InterstitialAuto){

@@ -59,8 +59,8 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                         }
                     };
 
+            appOpenAd.setFullScreenContentCallback(fullScreenContentCallback);
             appOpenAd.show(currentActivity);
-//            appOpenAd.show(currentActivity, fullScreenContentCallback);
 
         } else {
             Log.d(LOG_TAG, "Can not show ad.");

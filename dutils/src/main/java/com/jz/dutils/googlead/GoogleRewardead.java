@@ -42,6 +42,7 @@ public class GoogleRewardead {
             });
         }
     }
+
     public void showRewardedad(){
         if (rewardedAd!= null){
             rewardedAd.setFullScreenContentCallback(

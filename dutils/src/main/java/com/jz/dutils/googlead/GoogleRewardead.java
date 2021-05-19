@@ -49,7 +49,6 @@ public class GoogleRewardead {
                         @Override
                         public void onAdShowedFullScreenContent() {
                             // Called when ad is shown.
-
                         }
 
                         @Override

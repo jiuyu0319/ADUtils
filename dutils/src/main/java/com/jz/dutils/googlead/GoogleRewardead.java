@@ -33,7 +33,6 @@ public class GoogleRewardead {
                     isLoading = 1;
                     rewardedAd = rewardedAds;
                 }
-
                 @Override
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     super.onAdFailedToLoad(loadAdError);

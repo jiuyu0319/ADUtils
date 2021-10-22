@@ -60,6 +60,7 @@ public class HuaweiRewarded {
 
                     @Override
                     public void onRewardAdClosed() {
+
                         if (isLoading == 3) {
                             adinterface.onClose();
                         } else {

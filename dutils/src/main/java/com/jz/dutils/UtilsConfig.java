@@ -12,4 +12,5 @@ public class UtilsConfig {
     public static boolean NativeAuto = false;
     public static boolean InterstitialAuto = false;
     public static boolean OpenAuto = false;
+    public static boolean log = false;
 }
